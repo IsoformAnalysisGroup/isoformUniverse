@@ -5,7 +5,7 @@ test_that("isoformUniverse_packages() returns a data frame", {
 
 test_that("isoformUniverse_packages() has required columns", {
   pkgs <- isoformUniverse_packages()
-  expect_true(all(c("package", "source", "repo") %in% names(pkgs)))
+  expect_true(all(c("package", "source", "repo", "deps") %in% names(pkgs)))
 })
 
 test_that("isoformUniverse_packages() contains expected packages", {
@@ -38,4 +38,15 @@ test_that("Bioconductor packages have NA repo", {
 test_that("isoformUniverse_packages() returns no duplicate package names", {
   pkgs <- isoformUniverse_packages()
   expect_equal(length(unique(pkgs$package)), nrow(pkgs))
+})
+
+test_that("deps column is a list of data frames with required columns", {
+  pkgs <- isoformUniverse_packages()
+  expect_true(is.list(pkgs$deps))
+  expect_true(all(vapply(pkgs$deps, is.data.frame, logical(1))))
+  expect_true(all(vapply(
+    pkgs$deps,
+    function(x) all(c("package", "source", "repo") %in% names(x)),
+    logical(1)
+  )))
 })

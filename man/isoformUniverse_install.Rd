@@ -4,19 +4,23 @@
 \alias{isoformUniverse_install}
 \title{Install IsoformUniverse packages}
 \usage{
-isoformUniverse_install(...)
+isoformUniverse_install(..., auto_install_helpers = TRUE)
 }
 \arguments{
 \item{...}{Additional arguments passed to the underlying installer
 (\code{\link[BiocManager:install]{BiocManager::install()}} or \code{\link[remotes:install_github]{remotes::install_github()}}).}
+
+\item{auto_install_helpers}{Logical; if \code{TRUE} (default), automatically
+install missing helper packages (\code{BiocManager} and \code{remotes}) from CRAN.
+If \code{FALSE}, error when a required helper package is missing.}
 }
 \value{
-Invisibly returns \code{NULL}.  The function is called for its
-side-effect of installing packages.
+Invisibly returns \code{NULL}. The function is called for its side-effect
+of installing packages.
 }
 \description{
 Installs all packages listed in \code{\link[=isoformUniverse_packages]{isoformUniverse_packages()}} that are not
-yet installed on your system.  Packages are fetched from the appropriate
+yet installed on your system. Packages are fetched from the appropriate
 source (Bioconductor or GitHub) according to the package registry.
 \itemize{
 \item \strong{Bioconductor} packages are installed via
@@ -25,8 +29,8 @@ source (Bioconductor or GitHub) according to the package registry.
 \code{\link[remotes:install_github]{remotes::install_github()}}.
 }
 
-Both \code{BiocManager} and \code{remotes} must be available; you will receive an
-informative error if either is missing.
+Installer helper packages (\code{BiocManager} and \code{remotes}) are installed from
+CRAN on demand by default.
 }
 \examples{
 \dontrun{

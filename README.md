@@ -5,7 +5,7 @@
 
 **IsoformUniverse** is an umbrella R package for isoform-level analysis —
 inspired by how [`tidyverse`](https://www.tidyverse.org/) manages its
-ecosystem.  A single call to `library(IsoformUniverse)` installs, loads, and
+ecosystem.  A single call to `library(IsoformUniverse)` loads and
 keeps in sync a curated set of isoform-analysis packages hosted on
 Bioconductor and GitHub.
 
@@ -16,7 +16,7 @@ Bioconductor and GitHub.
 | Package | Source | Description |
 |---------|--------|-------------|
 | [pairedGSEA](https://bioconductor.org/packages/pairedGSEA/) | Bioconductor | Paired gene-set enrichment analysis for gene and isoform expression |
-| [IsoformSwitchAnalyzeR](https://github.com/kvittingsekse/IsoformSwitchAnalyzeR) | GitHub | Identify, annotate, and visualise isoform switches with functional consequences |
+| [IsoformSwitchAnalyzeR](https://github.com/kvittingseerup/IsoformSwitchAnalyzeR) | GitHub | Identify, annotate, and visualise isoform switches with functional consequences |
 
 ---
 
@@ -34,9 +34,11 @@ remotes::install_github("elena-iri/IsoformUniverse")
 ```r
 library(IsoformUniverse)
 
-# Install any missing member packages
+# Install any missing member packages (helper installers are auto-installed from CRAN)
 isoformUniverse_install()
 ```
+
+> Note: GitHub package dependencies declared in a package DESCRIPTION are typically installed automatically by `remotes::install_github()`. If a package has an extra dependency that is not installed automatically (for example, `pfamAnalyzeR` for `IsoformSwitchAnalyzeR`), declare it in the registry `deps` field shown below.
 
 ---
 
@@ -61,7 +63,8 @@ isoformUniverse_update()
 isoformUniverse_packages()
 #>                  package        source                                repo
 #> 1             pairedGSEA  Bioconductor                                <NA>
-#> 2  IsoformSwitchAnalyzeR        GitHub  kvittingsekse/IsoformSwitchAnalyzeR
+#> 2  IsoformSwitchAnalyzeR        GitHub  kvittingseerup/IsoformSwitchAnalyzeR
+#> deps: <list-column; each element is a dependency data.frame>
 ```
 
 ---
@@ -87,9 +90,26 @@ a new package:
      ),
      repo = c(
        NA_character_,
-       "kvittingsekse/IsoformSwitchAnalyzeR",
+       "kvittingseerup/IsoformSwitchAnalyzeR",
        "myOrg/myNewPackage"    # ← "owner/repo", or NA for Bioconductor
      ),
+     deps = I(list(
+       data.frame(
+         package = c("SummarizedExperiment", "S4Vectors"),
+         source = c("Bioconductor", "Bioconductor"),
+         repo = c(NA_character_, NA_character_)
+       ),
+       data.frame(
+         package = "pfamAnalyzeR",
+         source = "GitHub",
+         repo = "kvittingseerup/pfamAnalyzeR"
+       ),
+       data.frame(
+         package = character(0),
+         source = character(0),
+         repo = character(0)
+       )
+     )),
      stringsAsFactors = FALSE
    )
    ```
@@ -114,8 +134,8 @@ no other code changes are needed.
 | Function | Description |
 |----------|-------------|
 | `library(IsoformUniverse)` | Loads all member packages (calls `isoformUniverse_attach()` automatically) |
-| `isoformUniverse_packages()` | Returns a data frame of all member packages and their sources |
-| `isoformUniverse_install()` | Installs any missing member packages |
+| `isoformUniverse_packages()` | Returns a data frame of all member packages, sources, repositories, and explicit pre-dependencies |
+| `isoformUniverse_install()` | Installs any missing member packages (with optional explicit pre-dependencies (Bioconductor or GitHub)) |
 | `isoformUniverse_update()` | Updates all member packages to their latest versions |
 | `isoformUniverse_attach()` | Attaches all member packages and prints a startup message |
 

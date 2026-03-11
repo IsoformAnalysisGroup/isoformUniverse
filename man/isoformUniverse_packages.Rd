@@ -7,7 +7,7 @@
 isoformUniverse_packages()
 }
 \value{
-A \code{data.frame} with three columns:
+A \code{data.frame} with four columns:
 \describe{
 \item{\code{package}}{The R package name (character).}
 \item{\code{source}}{Where the package is hosted: \code{"Bioconductor"} or
@@ -15,11 +15,15 @@ A \code{data.frame} with three columns:
 \item{\code{repo}}{For GitHub packages, the \code{"owner/repo"} path needed by
 \code{\link[remotes:install_github]{remotes::install_github()}}.  \code{NA} for Bioconductor packages
 (character).}
+\item{\code{deps}}{A list-column where each entry is a data frame of
+explicit pre-install dependencies with columns \code{package}, \code{source},
+and \code{repo}. Use an empty data frame when no extra dependencies are
+needed.}
 }
 }
 \description{
 Returns a data frame describing every package that belongs to the
-IsoformUniverse ecosystem.  Each row is one package.
+IsoformUniverse ecosystem. Each row is one package.
 }
 \section{Adding packages}{
 

@@ -4,18 +4,22 @@
 \alias{isoformUniverse_update}
 \title{Update IsoformUniverse packages}
 \usage{
-isoformUniverse_update(...)
+isoformUniverse_update(..., auto_install_helpers = TRUE)
 }
 \arguments{
 \item{...}{Additional arguments passed to the underlying installer.}
+
+\item{auto_install_helpers}{Logical; if \code{TRUE} (default), automatically
+install missing helper packages (\code{BiocManager} and \code{remotes}) from CRAN.
+If \code{FALSE}, error when a required helper package is missing.}
 }
 \value{
-Invisibly returns \code{NULL}.  The function is called for its
-side-effect of updating packages.
+Invisibly returns \code{NULL}. The function is called for its side-effect
+of updating packages.
 }
 \description{
 Updates all packages listed in \code{\link[=isoformUniverse_packages]{isoformUniverse_packages()}} to their latest
-versions.  Unlike \code{\link[=isoformUniverse_install]{isoformUniverse_install()}}, this function also updates
+versions. Unlike \code{\link[=isoformUniverse_install]{isoformUniverse_install()}}, this function also updates
 packages that are already installed.
 \itemize{
 \item \strong{Bioconductor} packages are updated via
