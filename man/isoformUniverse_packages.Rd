@@ -13,7 +13,7 @@ A \code{data.frame} with four columns:
 \item{\code{source}}{Where the package is hosted: \code{"Bioconductor"} or
 \code{"GitHub"} (character).}
 \item{\code{repo}}{For GitHub packages, the \code{"owner/repo"} path needed by
-\code{\link[remotes:install_github]{remotes::install_github()}}.  \code{NA} for Bioconductor packages
+\code{\link[remotes:install_github]{remotes::install_github()}}. \code{NA} for Bioconductor packages
 (character).}
 \item{\code{deps}}{A list-column where each entry is a data frame of
 explicit pre-install dependencies with columns \code{package}, \code{source},

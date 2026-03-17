@@ -22,11 +22,13 @@ of installing packages.
 Installs all packages listed in \code{\link[=isoformUniverse_packages]{isoformUniverse_packages()}} that are not
 yet installed on your system. Packages are fetched from the appropriate
 source (Bioconductor or GitHub) according to the package registry.
+}
+\details{
 \itemize{
 \item \strong{Bioconductor} packages are installed via
-\code{\link[BiocManager:install]{BiocManager::install()}}.
+\link[BiocManager:install]{BiocManager::install()}.
 \item \strong{GitHub} packages are installed via
-\code{\link[remotes:install_github]{remotes::install_github()}}.
+\link[remotes:install_github]{remotes::install_github()}.
 }
 
 Installer helper packages (\code{BiocManager} and \code{remotes}) are installed from

@@ -31,3 +31,8 @@
   Bioconductor and GitHub pre-dependencies.
 * Added `pfamAnalyzeR` as an explicit GitHub pre-dependency for
   `IsoformSwitchAnalyzeR`.
+  
+## Testing addition of new package
+
+* Tested developer guide by adding a new R package (BioPred) with
+  several dependencies.
