@@ -34,11 +34,9 @@ remotes::install_github("elena-iri/IsoformUniverse")
 ```r
 library(IsoformUniverse)
 
-# Install any missing member packages (helper installers are auto-installed from CRAN)
+# Install any missing member packages
 isoformUniverse_install()
 ```
-
-> Note: GitHub package dependencies declared in a package DESCRIPTION are typically installed automatically by `remotes::install_github()`. If a package has an extra dependency that is not installed automatically (for example, `pfamAnalyzeR` for `IsoformSwitchAnalyzeR`), declare it in the registry `deps` field shown below.
 
 ---
 
@@ -69,65 +67,6 @@ isoformUniverse_packages()
 
 ---
 
-## Adding new packages
-
-IsoformUniverse is designed to grow as the team develops more tools.  To add
-a new package:
-
-1. **Edit `R/packages.R`** — add a row to the `.isoformverse_pkgs` data frame:
-
-   ```r
-   .isoformverse_pkgs <- data.frame(
-     package = c(
-       "pairedGSEA",
-       "IsoformSwitchAnalyzeR",
-       "myNewPackage"          # ← add your package here
-     ),
-     source = c(
-       "Bioconductor",
-       "GitHub",
-       "GitHub"                # ← "Bioconductor" or "GitHub"
-     ),
-     repo = c(
-       NA_character_,
-       "kvittingseerup/IsoformSwitchAnalyzeR",
-       "myOrg/myNewPackage"    # ← "owner/repo", or NA for Bioconductor
-     ),
-     deps = I(list(
-       data.frame(
-         package = c("SummarizedExperiment", "S4Vectors"),
-         source = c("Bioconductor", "Bioconductor"),
-         repo = c(NA_character_, NA_character_)
-       ),
-       data.frame(
-         package = "pfamAnalyzeR",
-         source = "GitHub",
-         repo = "kvittingseerup/pfamAnalyzeR"
-       ),
-       data.frame(
-         package = character(0),
-         source = character(0),
-         repo = character(0)
-       )
-     )),
-     stringsAsFactors = FALSE
-   )
-   ```
-
-2. **Regenerate documentation**:
-
-   ```r
-   devtools::document()
-   ```
-
-3. **Add a `NEWS.md` entry** describing the new package.
-
-4. **Open a pull request** against `main`.
-
-The install and update machinery will automatically pick up the new entry —
-no other code changes are needed.
-
----
 
 ## Functions
 
@@ -139,8 +78,3 @@ no other code changes are needed.
 | `isoformUniverse_update()` | Updates all member packages to their latest versions |
 | `isoformUniverse_attach()` | Attaches all member packages and prints a startup message |
 
----
-
-## License
-
-MIT © Elena Iri
