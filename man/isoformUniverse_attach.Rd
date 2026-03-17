@@ -14,7 +14,8 @@ IsoformUniverse packages (whether or not they were successfully attached).
 Loads every package listed in \code{\link[=isoformUniverse_packages]{isoformUniverse_packages()}} and prints a
 startup message that shows which packages were successfully attached and
 their versions.  Packages that are already attached are silently skipped.
-
+}
+\details{
 This function is called automatically when you run
 \code{library(IsoformUniverse)}.
 }
