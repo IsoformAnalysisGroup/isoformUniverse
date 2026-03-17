@@ -112,6 +112,11 @@
   pkg <- row[["package"]]
   source <- row[["source"]]
   repo <- row[["repo"]]
+  old_version <- if (.is_installed(pkg)) {
+    as.character(utils::packageVersion(pkg))
+  } else {
+    NA_character_
+  }
 
   if (source == "Bioconductor") {
     .ensure_helper("BiocManager", auto_install = auto_install_helpers)
@@ -123,18 +128,26 @@
     remotes::install_github(repo, upgrade = "always", ...)
   } else {
     cli::cli_alert_warning("Unknown source {.val {source}} for {.pkg {pkg}}; skipping.")
-    return(invisible(FALSE))
+    return(invisible(NA))
   }
 
   if (!.is_installed(pkg)) {
     cli::cli_alert_danger(
       "Package {.pkg {pkg}} is still not installed after update attempt."
     )
-    return(invisible(FALSE))
+    return(invisible(NA))
   }
 
-  cli::cli_alert_success("Updated {.pkg {pkg}}.")
-  invisible(TRUE)
+  new_version <- as.character(utils::packageVersion(pkg))
+  updated <- is.na(old_version) || !identical(old_version, new_version)
+
+  if (updated) {
+    cli::cli_alert_success("Updated {.pkg {pkg}} ({old_version} -> {new_version}).")
+  } else {
+    cli::cli_alert_info("{.pkg {pkg}} is already up to date ({new_version}).")
+  }
+
+  invisible(updated)
 }
 
 # Public API ──────────────────────────────────────────────────────────────────
@@ -233,13 +246,17 @@ isoformUniverse_update <- function(..., auto_install_helpers = TRUE) {
     logical(1)
   )
 
-  failed <- pkgs$package[!results]
+  failed <- pkgs$package[is.na(results)]
+  any_updated <- any(results, na.rm = TRUE)
+
   if (length(failed) > 0) {
     cli::cli_alert_warning(
       "Update finished with failures for: {.pkg {failed}}"
     )
-  } else {
+  } else if (any_updated) {
     cli::cli_alert_success("Update complete.")
+  } else {
+    cli::cli_alert_info("Packages are up to date; no update carried out.")
   }
 
   invisible(NULL)

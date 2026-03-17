@@ -33,3 +33,61 @@ test_that(".install_one() returns FALSE for unknown source", {
   ))
   expect_false(IsoformUniverse:::.install_one(row[1, ], auto_install_helpers = FALSE))
 })
+
+test_that("isoformUniverse_update() reports when no updates are needed", {
+  msgs <- character()
+
+  local_mocked_bindings(
+    isoformUniverse_packages = function() {
+      data.frame(
+        package = c("pkgA", "pkgB"),
+        source = c("Bioconductor", "GitHub"),
+        repo = c(NA_character_, "owner/pkgB"),
+        deps = I(list(data.frame(), data.frame())),
+        stringsAsFactors = FALSE
+      )
+    },
+    .update_one = function(row, ..., auto_install_helpers = TRUE) FALSE,
+    .package = "IsoformUniverse"
+  )
+  local_mocked_bindings(
+    cli_h1 = function(...) NULL,
+    cli_alert_info = function(msg, ...) msgs <<- c(msgs, msg),
+    cli_alert_success = function(msg, ...) msgs <<- c(msgs, msg),
+    cli_alert_warning = function(msg, ...) msgs <<- c(msgs, msg),
+    .env = asNamespace("cli")
+  )
+
+  isoformUniverse_update()
+  expect_true(any(grepl("Packages are up to date; no update carried out\\.", msgs)))
+})
+
+test_that("isoformUniverse_update() reports completion when at least one update happens", {
+  msgs <- character()
+
+  local_mocked_bindings(
+    isoformUniverse_packages = function() {
+      data.frame(
+        package = c("pkgA", "pkgB"),
+        source = c("Bioconductor", "GitHub"),
+        repo = c(NA_character_, "owner/pkgB"),
+        deps = I(list(data.frame(), data.frame())),
+        stringsAsFactors = FALSE
+      )
+    },
+    .update_one = function(row, ..., auto_install_helpers = TRUE) {
+      row[["package"]] == "pkgA"
+    },
+    .package = "IsoformUniverse"
+  )
+  local_mocked_bindings(
+    cli_h1 = function(...) NULL,
+    cli_alert_info = function(msg, ...) msgs <<- c(msgs, msg),
+    cli_alert_success = function(msg, ...) msgs <<- c(msgs, msg),
+    cli_alert_warning = function(msg, ...) msgs <<- c(msgs, msg),
+    .env = asNamespace("cli")
+  )
+
+  isoformUniverse_update()
+  expect_true(any(grepl("Update complete\\.", msgs)))
+})
