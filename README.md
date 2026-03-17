@@ -36,6 +36,9 @@ library(IsoformUniverse)
 
 # Install any missing member packages
 isoformUniverse_install()
+
+# Attach member packages that are not already loaded
+isoformUniverse_attach()
 ```
 
 ---
