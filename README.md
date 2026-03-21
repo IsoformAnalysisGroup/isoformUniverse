@@ -5,14 +5,17 @@
 
 **IsoformUniverse** is an umbrella R package for isoform-level analysis —
 inspired by how [`tidyverse`](https://www.tidyverse.org/) manages its
-ecosystem.  A single call to `library(IsoformUniverse)` loads and
+ecosystem.  
+
+Currently IsoformUniverse only contains two packages many additional packages are currently being developed by the Isoform Analysis Group and collaborators. The vision is a universe of interconnected packages that allows extensive isoform analysis.
+
+A single call to `library(IsoformUniverse)` loads and
 keeps in sync a curated set of isoform-analysis packages hosted on
 Bioconductor and GitHub.
 
 ---
 
 ## Packages included
-Currently IsoformUniverse only contains two packages many additional packages are currently being developed by the Isoform Analysis Group and collaborators. The vision is a universe of interconnected packages that allows extensive isoform analysis.
 
 | Package | Source | Description |
 |---------|--------|-------------|
