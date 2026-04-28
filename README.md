@@ -7,7 +7,7 @@
 inspired by how [`tidyverse`](https://www.tidyverse.org/) manages its
 ecosystem.  
 
-The package currently brings together two IsoformUniverse packages, with several additional tools under active development by the Isoform Analysis Group and collaborators. The long-term vision is to provide a coordinated “universe” of R packages for comprehensive, multi-faceted analysis of transcript and protein isoforms across data modalities, biological contexts, and disease settings.
+The vision behind isoformUniverse is to provide a coordinated “universe” of R packages for comprehensive, multi-faceted analysis of transcript and protein isoforms across data modalities, biological contexts, and disease settings. The package currently brings together two IsoformUniverse packages, with several additional tools under active development by the Isoform Analysis Group and collaborators. 
 
 A single call to `library(IsoformUniverse)` loads and
 keeps in sync a curated set of isoform-analysis packages hosted on
