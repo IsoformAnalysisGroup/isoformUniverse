@@ -1,9 +1,9 @@
-# IsoformUniverse <img src="man/figures/logo.png" align="right" height="139" alt="" />
+# isoformUniverse <img src="man/figures/logo.png" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-**IsoformUniverse** is an umbrella R package for isoform-level analysis —
+**isoformUniverse** is an umbrella R package for isoform-level analysis —
 inspired by how [`tidyverse`](https://www.tidyverse.org/) manages its
 ecosystem.  
 
@@ -26,17 +26,17 @@ Bioconductor and GitHub.
 
 ## Installation
 
-### Install IsoformUniverse
+### Install isoformUniverse
 
 ```r
 # Install from GitHub
-remotes::install_github("IsoformAnalysisGroup/IsoformUniverse")
+remotes::install_github("IsoformAnalysisGroup/isoformUniverse")
 ```
 
 ### Install all member packages
 
 ```r
-library(IsoformUniverse)
+library(isoformUniverse)
 
 # Install any missing member packages
 isoformUniverse_install()
@@ -50,8 +50,8 @@ isoformUniverse_attach()
 ## Usage
 
 ```r
-library(IsoformUniverse)
-#> ── IsoformUniverse ─────────────────────────────────────────────────────────
+library(isoformUniverse)
+#> ── isoformUniverse ─────────────────────────────────────────────────────────
 #> ✔ pairedGSEA 1.4.0
 #> ✔ IsoformSwitchAnalyzeR 2.4.0
 ```
@@ -88,4 +88,4 @@ isoformUniverse_packages()
 
 ## Contributing new packages
 
-Please reach out to Kristoffer Vitting-Seerup if you are interested in contributing a package to the IsoformUniverse
+Please reach out to Kristoffer Vitting-Seerup if you are interested in contributing a package to the isoformUniverse
