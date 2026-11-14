@@ -4,3 +4,12 @@ export(isoformUniverse_attach)
 export(isoformUniverse_install)
 export(isoformUniverse_packages)
 export(isoformUniverse_update)
+importFrom(cli,
+  cli_alert_danger,
+  cli_alert_info,
+  cli_alert_success,
+  cli_alert_warning,
+  cli_bullets,
+  cli_h1
+)
+importFrom(utils,packageVersion)

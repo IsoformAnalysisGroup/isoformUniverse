@@ -30,15 +30,21 @@
 .isoformverse_pkgs <- data.frame(
   package = c(
     "pairedGSEA",
-    "IsoformSwitchAnalyzeR"
+    "IsoformSwitchAnalyzeR",
+    "geneSetSimplifyR",
+    "IsoNetAnalyzeR"
   ),
   source = c(
     "Bioconductor",
+    "GitHub",
+    "GitHub",
     "GitHub"
   ),
   repo = c(
     NA_character_,
-    "kvittingseerup/IsoformSwitchAnalyzeR"
+    "kvittingseerup/IsoformSwitchAnalyzeR",
+    "IsoformAnalysisGroup/geneSetSimplifyR",
+    "IsoformAnalysisGroup/IsoNetAnalyzeR"
   ),
   deps = I(list(
     data.frame(
@@ -60,6 +66,16 @@
       source = "GitHub",
       repo = "kvittingseerup/pfamAnalyzeR",
       stringsAsFactors = FALSE
+    ),
+    data.frame(
+      package = character(0),
+      source = character(0),
+      repo = character(0)
+    ),
+    data.frame(
+      package = character(0),
+      source = character(0),
+      repo = character(0)
     )
   )),
   stringsAsFactors = FALSE

@@ -21,6 +21,8 @@ Bioconductor and GitHub.
 |---------|--------|-------------|
 | [pairedGSEA](https://bioconductor.org/packages/pairedGSEA/) | Bioconductor | Paired gene-set enrichment analysis for gene and isoform expression |
 | [IsoformSwitchAnalyzeR](https://github.com/kvittingseerup/IsoformSwitchAnalyzeR) | GitHub | Identify, annotate, and visualise isoform switches with functional consequences |
+| [geneSetSimplifyR](https://github.com/IsoformAnalysisGroup/geneSetSimplifyR) | GitHub | Group significant gene sets into a small number of clusters with an informative label |
+| [IsoNetAnalyzeR](https://github.com/IsoformAnalysisGroup/IsoNetAnalyzeR) | GitHub | Predict protein-interaction neighbourhoods of transcript isoforms |
 
 ---
 

@@ -12,6 +12,8 @@
 * Initial member packages:
   * [pairedGSEA](https://bioconductor.org/packages/pairedGSEA/) (Bioconductor)
   * [IsoformSwitchAnalyzeR](https://github.com/kvittingsekse/IsoformSwitchAnalyzeR) (GitHub)
+  * [geneSetSimplifyR](https://github.com/IsoformAnalysisGroup/geneSetSimplifyR) (GitHub)
+  * [IsoNetAnalyzeR](https://github.com/IsoformAnalysisGroup/IsoNetAnalyzeR) (GitHub)
 
 ## Improvements
 
